@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EntityLayer\LibraryProject.EntityLayer.csproj" />
+    <ProjectReference Include="..\LibraryProject.DtoLayer\LibraryProject.DtoLayer.csproj" />
   </ItemGroup>
 
 </Project>

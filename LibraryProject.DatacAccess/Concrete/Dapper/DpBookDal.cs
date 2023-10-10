@@ -1,11 +1,13 @@
 ﻿using Dapper;
-using EntityLayer;
 using LibraryProject.DataAccess.Abstract;
+using LibraryProject.DtoLayer.Dtos;
+using LibraryProject.EntityLayer.Concrete;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,7 +32,7 @@ namespace LibraryProject.DataAccess.Concrete.Dapper
 
         public List<Book> GetAll()
         {
-            var query = "Select * From Book";
+            var query = "SELECT * FROM Book;";
             using (var connection= repository.CreateConnection())
             {
                 var values=connection.Query<Book>(query).ToList();
@@ -38,11 +40,20 @@ namespace LibraryProject.DataAccess.Concrete.Dapper
             }
         }
 
+        public List<ResultBookDto> GetBooksWithCategory()
+        {
+           var query= "SELECT bookTitle,author,publisher,publicationDate,pageCount,price,categoryName FROM Book INNER JOIN Category ON Book.CategoryId=Category.Id;" ;
+            using (var connection = repository.CreateConnection())
+            {
+                var values = connection.Query<ResultBookDto>(query).ToList();
+                return values;
+            }
+        }
+
         public Book GetById(int entityId)
         {
            
-               
-            var query = "SELECT * FROM Book WHERE bookId = @entityId;";
+            var query = "SELECT * FROM Book WHERE Id = @entityId;";
 
             using (var connection = repository.CreateConnection())
             {
@@ -58,7 +69,7 @@ namespace LibraryProject.DataAccess.Concrete.Dapper
 
         public void Remove(int bookId)
         {
-            var query = "DELETE FROM Book WHERE bookId = @bookId;";
+            var query = "DELETE FROM Book WHERE Id = @bookId;";
             using (var connection = repository.CreateConnection())
             {
                 connection.Execute(query, new { bookId });
@@ -68,7 +79,7 @@ namespace LibraryProject.DataAccess.Concrete.Dapper
 
         public void Update(Book entity)
         {
-            var query = "UPDATE Book SET bookTitle=@bookTitle,author=@author,publisher=@publisher,publicationDate=@publicationDate,pageCount=@pageCount,price=@price WHERE bookId=@bookId;";
+            var query = "UPDATE Book SET bookTitle=@bookTitle,author=@author,publisher=@publisher,publicationDate=@publicationDate,pageCount=@pageCount,price=@price WHERE Id=@bookId;";
             using (var connection = repository.CreateConnection())
             {
                 connection.Execute(query, entity);

@@ -1,5 +1,4 @@
-﻿using EntityLayer;
-using LibraryProject.DtoLayer.Dtos;
+﻿using LibraryProject.DtoLayer.Dtos;
 using LibraryProject.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -21,8 +20,9 @@ namespace LibraryProject.UI.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            
             var client=_httpClientFactory.CreateClient();
-            var responsive =await client.GetAsync("https://localhost:7052/api/Books");
+            var responsive =await client.GetAsync("https://localhost:7052/api/Books/GetAllBooks");
             if (responsive.IsSuccessStatusCode) {
                 var jsonData=await responsive.Content.ReadAsStringAsync();
                 var values=JsonConvert.DeserializeObject<List<ResultBookDto>>(jsonData);
@@ -35,7 +35,7 @@ namespace LibraryProject.UI.Controllers
             if (id != 0)
             {
                 var client = _httpClientFactory.CreateClient();
-                var apiUrl = $"https://localhost:7052/api/Books/{id}";
+                var apiUrl = $"https://localhost:7052/api/Books/DeleteBook/{id}";
                 var response = await client.DeleteAsync(apiUrl);
 
                 if (response.IsSuccessStatusCode)
@@ -58,7 +58,7 @@ namespace LibraryProject.UI.Controllers
             if(id != 0)
             {
                 var client = _httpClientFactory.CreateClient();
-                var apiUrl = $"https://localhost:7052/api/Books/{id}";
+                var apiUrl = $"https://localhost:7052/api/Books/GetBookById/{id}";
                 var response = await client.GetAsync(apiUrl);
 
                 if (response.IsSuccessStatusCode)
@@ -88,7 +88,7 @@ namespace LibraryProject.UI.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData=JsonConvert.SerializeObject(resultBookDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var response = await client.PutAsync("https://localhost:7052/api/Books", stringContent);
+            var response = await client.PutAsync("https://localhost:7052/api/Books/UpdateBook", stringContent);
             if(response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -111,7 +111,7 @@ namespace LibraryProject.UI.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createBookDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("https://localhost:7052/api/Books", stringContent);
+            var response = await client.PostAsync("https://localhost:7052/api/Books/NewAddBook", stringContent);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");

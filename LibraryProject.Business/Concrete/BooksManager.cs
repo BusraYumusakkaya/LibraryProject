@@ -1,6 +1,7 @@
-﻿using EntityLayer;
-using LibraryProject.BusinessLogic.Abstract;
+﻿using LibraryProject.BusinessLogic.Abstract;
 using LibraryProject.DataAccess.Abstract;
+using LibraryProject.DtoLayer.Dtos;
+using LibraryProject.EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,14 @@ namespace LibraryProject.BusinessLogic.Concrete
             this.BookDal = BooksDal;
         }
 
+        public List<ResultBookDto> GetBooksWithCategory()
+        {
+            return BookDal.GetBooksWithCategory();
+        }
+
         public void TDelete(Book entity)
         {
-            BookDal.Remove(entity.bookId);
+            BookDal.Remove(entity.Id);
         }
 
         public Book TGetById(int id)
@@ -43,5 +49,6 @@ namespace LibraryProject.BusinessLogic.Concrete
         {
            BookDal.Update(entity);
         }
+
     }
 }

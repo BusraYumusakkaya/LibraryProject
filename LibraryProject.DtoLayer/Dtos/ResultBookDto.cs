@@ -1,5 +1,4 @@
-﻿using EntityLayer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -20,5 +19,6 @@ namespace LibraryProject.DtoLayer.Dtos
         public DateTime publicationDate { get; set; }
         public int pageCount { get; set; }
         public decimal price { get; set; }
+        public string categoryName { get; set; }
     }
 }

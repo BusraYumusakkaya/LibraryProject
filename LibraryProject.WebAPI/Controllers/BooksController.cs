@@ -1,6 +1,6 @@
-﻿using EntityLayer;
-using LibraryProject.BusinessLogic.Abstract;
+﻿using LibraryProject.BusinessLogic.Abstract;
 using LibraryProject.DtoLayer.Dtos;
+using LibraryProject.EntityLayer.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,12 +16,12 @@ namespace LibraryProject.WebAPI.Controllers
         {
             this.bookService = bookService;
         }
-        [HttpGet]
+        [HttpGet("GetAllBooks")]
         public IActionResult GetAll()
         {
-            return Ok(bookService.TGetList());
+            return Ok(bookService.GetBooksWithCategory());
         }
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteBook/{id}")]
         public IActionResult Delete(int id)
         {
             var value = bookService.TGetById(id);
@@ -32,7 +32,7 @@ namespace LibraryProject.WebAPI.Controllers
             return NotFound("Silme işlemi gerçekleşmedi.");
            
         }
-        [HttpGet("{id}")]
+        [HttpGet("GetBookById/{id}")]
         public IActionResult GetBookById(int id) { 
             var book= bookService.TGetById(id);
             if (book != null)
@@ -42,10 +42,10 @@ namespace LibraryProject.WebAPI.Controllers
             return NotFound("Aradığınız kitap bulunamadı.");
            
         }
-        [HttpPut]
+        [HttpPut("UpdateBook")]
         public IActionResult UpdateBook (Book book)
         {
-            var value= bookService.TGetById(book.bookId);
+            var value= bookService.TGetById(book.Id);
             if(value != null)
             {
                 bookService.TUpdate(book);
@@ -54,7 +54,7 @@ namespace LibraryProject.WebAPI.Controllers
             return NotFound("Güncelleme işlemi yapılamadı.");
         }
            
-        [HttpPost]
+        [HttpPost("NewAddBook")]
         public IActionResult NewAddBook(Book book)
         {
             bookService.TInsert(book);

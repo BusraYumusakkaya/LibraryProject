@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Table Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="bg-light rounded h-100 p-4">
+                <div style="container text-center">
+                    <div class="row">
+                        <div class="col-8">
+                            <h4 class="mb-4 fw-normal text-body-secondary">Category Table</h4>
+                        </div>
+                        <div class="col-4 text-end">
+                            <a asp-action="AddBook" class="btn btn-outline-primary" style='font-size:24px'>
+                                <i class='fas fa-plus-circle'></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Category Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           @* @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@item.bookId</th>
+                                    <td><a asp-action="Delete" asp-route-id="@item.bookId" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a></td>
+                                    <td><a asp-action="Update" asp-route-id="@item.bookId" class="btn btn-outline-info"><i class="fas fa-redo"></i></a></td>
+                                </tr>
+                            }*@
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Table End -->
+<style>
+    button:hover {
+        background-color: lightblue;
+        color: white;
+        font-weight: bold;
+    }
+</style>
