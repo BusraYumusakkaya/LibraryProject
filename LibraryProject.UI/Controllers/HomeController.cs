@@ -1,4 +1,4 @@
-﻿using LibraryProject.DtoLayer.Dtos;
+﻿using LibraryProject.DtoLayer.Dtos.BookDtos;
 using LibraryProject.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;

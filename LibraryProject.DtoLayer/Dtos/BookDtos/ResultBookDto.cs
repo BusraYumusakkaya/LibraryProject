@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryProject.DtoLayer.Dtos
+namespace LibraryProject.DtoLayer.Dtos.BookDtos
 {
-    public class CreateBookDto
+    public class ResultBookDto
     {
-        [Required(ErrorMessage ="Bu alan zorunludur.")]
+        public int Id { get; set; }
+        [Required(ErrorMessage = "Bu alan zorunludur.")]
         public string bookTitle { get; set; }
         [Required(ErrorMessage = "Bu alan zorunludur.")]
         public string author { get; set; }
@@ -18,5 +19,6 @@ namespace LibraryProject.DtoLayer.Dtos
         public DateTime publicationDate { get; set; }
         public int pageCount { get; set; }
         public decimal price { get; set; }
+        public string categoryName { get; set; }
     }
 }

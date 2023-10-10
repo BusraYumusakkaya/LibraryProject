@@ -1,8 +1,8 @@
 ﻿using LibraryProject.EntityLayer.Abstract;
 
-namespace LibraryProject.EntityLayer.Concrete
+namespace LibraryProject.EntityLayer.Concrete.Library
 {
-    public class Book:BaseEntity
+    public class Book : BaseEntity
     {
         public string bookTitle { get; set; }
         public string author { get; set; }

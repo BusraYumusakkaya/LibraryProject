@@ -12,6 +12,13 @@ builder.Services.AddControllers();
 builder.Services.AddTransient<IBookService, BooksManager>();
 builder.Services.AddTransient<IBookDal, DpBookDal>();
 
+builder.Services.AddTransient<ICategoryService, CategoryManager>();
+builder.Services.AddTransient<ICategoryDal, DpCategoryDal>();
+
+builder.Services.AddTransient<IUserService, UserManager>();
+builder.Services.AddTransient<IUserDal,DpUserDal>();
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

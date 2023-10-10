@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using LibraryProject.DataAccess.Abstract;
-using LibraryProject.DtoLayer.Dtos;
-using LibraryProject.EntityLayer.Concrete;
+using LibraryProject.DtoLayer.Dtos.BookDtos;
+using LibraryProject.EntityLayer.Concrete.Library;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -42,7 +42,7 @@ namespace LibraryProject.DataAccess.Concrete.Dapper
 
         public List<ResultBookDto> GetBooksWithCategory()
         {
-           var query= "SELECT bookTitle,author,publisher,publicationDate,pageCount,price,categoryName FROM Book INNER JOIN Category ON Book.CategoryId=Category.Id;" ;
+           var query= "SELECT b.Id,b.bookTitle,b.author,b.publisher,b.publicationDate,b.pageCount,b.price,c.categoryName FROM Book b INNER JOIN Category c ON b.CategoryId=c.Id;" ;
             using (var connection = repository.CreateConnection())
             {
                 var values = connection.Query<ResultBookDto>(query).ToList();

@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryProject.EntityLayer.Concrete
+namespace LibraryProject.EntityLayer.Concrete.Library
 {
-    public class Category:BaseEntity
+    public class Category : BaseEntity
     {
-        public Category() { 
+        public Category()
+        {
             Books = new HashSet<Book>();
         }
         public string CategoryName { get; set; }

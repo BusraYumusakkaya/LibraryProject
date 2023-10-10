@@ -1,4 +1,5 @@
-﻿
+﻿@using LibraryProject.DtoLayer.Dtos.CategoryDtos;
+@model List<ResultCategoryDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,11 +14,6 @@
                         <div class="col-8">
                             <h4 class="mb-4 fw-normal text-body-secondary">Category Table</h4>
                         </div>
-                        <div class="col-4 text-end">
-                            <a asp-action="AddBook" class="btn btn-outline-primary" style='font-size:24px'>
-                                <i class='fas fa-plus-circle'></i>
-                            </a>
-                        </div>
 
                     </div>
                 </div>
@@ -26,17 +22,19 @@
                         <thead>
                             <tr>
                                 <th scope="col">Category Name</th>
+                                <th scope="col">Delete</th>
+                                <th scope="col">Update</th>
                             </tr>
                         </thead>
                         <tbody>
-                           @* @foreach (var item in Model)
+                            @foreach (var item in Model)
                             {
                                 <tr>
-                                    <th scope="row">@item.bookId</th>
-                                    <td><a asp-action="Delete" asp-route-id="@item.bookId" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a></td>
-                                    <td><a asp-action="Update" asp-route-id="@item.bookId" class="btn btn-outline-info"><i class="fas fa-redo"></i></a></td>
+                                    <th scope="row">@item.CategoryName</th>
+                                    <td><a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a></td>
+                                    <td><a asp-action="Update" asp-route-id="@item.Id" class="btn btn-outline-info"><i class="fas fa-redo"></i></a></td>
                                 </tr>
-                            }*@
+                            }
                         </tbody>
                     </table>
                 </div>

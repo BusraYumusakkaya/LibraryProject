@@ -1,6 +1,6 @@
 ﻿using LibraryProject.BusinessLogic.Abstract;
 using LibraryProject.DtoLayer.Dtos;
-using LibraryProject.EntityLayer.Concrete;
+using LibraryProject.EntityLayer.Concrete.Library;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

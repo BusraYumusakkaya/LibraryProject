@@ -1,0 +1,40 @@
+﻿@using LibraryProject.DtoLayer.Dtos.UserDtos;
+@model List<ResultUserDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    @foreach (var item in Model)
+    {
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-header">
+                @item.UserName
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@item.FirstName @item.LastName</h5>
+                <p class="card-text">@item.Email</p>
+                    <button type="button" class="btn btn-secondary">View to profile</button>
+            </div>
+            <div class="card-footer text-body-secondary">
+                @item.Id
+            </div>
+        </div>
+    </div>
+    }
+</div>
+
+
+    
+
+
+<style>
+    .card {
+        margin-block: 10px;
+        margin-right: 20px;
+        margin-left: 20px;
+        background-color: #F3F6F9;
+    }
+</style>
+

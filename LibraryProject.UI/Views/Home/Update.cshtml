@@ -1,4 +1,5 @@
 ﻿@using LibraryProject.DtoLayer.Dtos;
+@using LibraryProject.DtoLayer.Dtos.BookDtos;
 @model ResultBookDto
 
 <div class="container-fluid pt-4 px-4">
@@ -7,7 +8,7 @@
             <div class="custom-bg-blue rounded p-4">
                 <h3 class="text-center mb-4 fw-normal">Update Book</h3>
                 <form method="post" asp-action="Update">
-                    <input asp-for=@Model.bookId hidden />
+                    <input asp-for=@Model.Id hidden />
                     <div class="form-group">
                         <label asp-for=@Model.bookTitle class="control-label">Book Title</label>
                         <input asp-for=@Model.bookTitle class="form-control" />
