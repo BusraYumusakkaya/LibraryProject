@@ -4,6 +4,7 @@ using LibraryProject.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Diagnostics;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -101,7 +102,7 @@ namespace LibraryProject.UI.Controllers
             {
                 return RedirectToAction("Index");
             }
-            return View();
+            return View("Index");
         }
 
         public async Task <IActionResult> AddBook()
