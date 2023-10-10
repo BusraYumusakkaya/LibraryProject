@@ -43,6 +43,9 @@
                         <tbody>
                             @foreach(var item in Model)
                             {
+                                var tm = "#deleteModal" + item.Id;
+                                var mid = "deleteModal" + item.Id;
+                                var updateModalId = "updateModal" + item.Id;
                                 <tr>
                                     <th scope="row">@item.Id</th>
                                     <td>@item.bookTitle</td>
@@ -52,10 +55,47 @@
                                     <td>@item.publicationDate.ToString("dd/MM/yyyy")</td>
                                     <td>@item.pageCount</td>
                                     <td>@item.price $</td>
-                                    <td><a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a></td>
-                                    <td><a asp-action="Update" asp-route-id="@item.Id" class="btn btn-outline-info"><i class="fas fa-redo"></i></a></td>
+                                    <td><a data-bs-toggle="modal" data-bs-target="@tm" data-id="@item.Id" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a></td>
+                                    <td><a data-bs-toggle="modal" data-bs-target="#@updateModalId" data-id="@item.Id" onclick="GetUpdateBook('@item.Id')" class="btn btn-outline-info update"><i class="fas fa-redo"></i></a></td>
+                                   
+
+
                                 </tr>
+                                <!--Delete Modal Start-->
+                                <div class="modal fade" id="@mid" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="deleteModalLabel">This item will be deleted!</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">Are You Sure?</div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">Yes</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!--Update Modal Start-->
+                                <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="updateModalLabel">Update Book</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div id="updatePartial"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             }
+                           
                         </tbody>
                     </table>
                 </div>
@@ -63,6 +103,7 @@
         </div>
     </div>
 </div>
+
 <!-- Table End -->
 <style>
     button:hover {
@@ -71,4 +112,6 @@
         font-weight: bold;
     }
 </style>
-      
+
+<script src="~/js/site.js" asp-append-version="true"></script>
+

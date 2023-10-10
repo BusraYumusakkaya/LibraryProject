@@ -20,5 +20,6 @@ namespace LibraryProject.DtoLayer.Dtos.BookDtos
         public int pageCount { get; set; }
         public decimal price { get; set; }
         public string categoryName { get; set; }
+        public int categoryId { get; set; }
     }
 }

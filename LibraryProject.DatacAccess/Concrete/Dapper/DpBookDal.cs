@@ -23,7 +23,7 @@ namespace LibraryProject.DataAccess.Concrete.Dapper
 
         public void Add(Book entity)
         {
-            var query = "INSERT INTO Book (bookTitle,author,publisher,publicationDate,pageCount,price) VALUES (@bookTitle,@author,@publisher,@publicationDate,@pageCount,@price);";
+            var query = "INSERT INTO Book (bookTitle,author,publisher,publicationDate,pageCount,price,categoryId) VALUES (@bookTitle,@author,@publisher,@publicationDate,@pageCount,@price,@categoryId);";
             using (var connection = repository.CreateConnection())
             {
                connection.Execute(query, entity);
@@ -79,7 +79,7 @@ namespace LibraryProject.DataAccess.Concrete.Dapper
 
         public void Update(Book entity)
         {
-            var query = "UPDATE Book SET bookTitle=@bookTitle,author=@author,publisher=@publisher,publicationDate=@publicationDate,pageCount=@pageCount,price=@price WHERE Id=@bookId;";
+            var query = "UPDATE Book SET bookTitle=@bookTitle,author=@author,publisher=@publisher,publicationDate=@publicationDate,pageCount=@pageCount,price=@price,categoryId=@categoryId WHERE Id=@Id;";
             using (var connection = repository.CreateConnection())
             {
                 connection.Execute(query, entity);

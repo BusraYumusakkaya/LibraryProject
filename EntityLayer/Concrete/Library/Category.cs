@@ -9,11 +9,11 @@ namespace LibraryProject.EntityLayer.Concrete.Library
 {
     public class Category : BaseEntity
     {
-        public Category()
-        {
-            Books = new HashSet<Book>();
-        }
+        //public Category()
+        //{
+        //    Books = new HashSet<Book>();
+        //}
         public string CategoryName { get; set; }
-        public ICollection<Book> Books { get; set; }
+        //public ICollection<Book> Books { get; set; }
     }
 }

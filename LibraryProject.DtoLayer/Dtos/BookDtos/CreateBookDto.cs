@@ -18,5 +18,6 @@ namespace LibraryProject.DtoLayer.Dtos.BookDtos
         public DateTime publicationDate { get; set; }
         public int pageCount { get; set; }
         public decimal price { get; set; }
+        public int CategoryId { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace LibraryProject.EntityLayer.Concrete.Library
         public DateTime publicationDate { get; set; }
         public int pageCount { get; set; }
         public decimal price { get; set; }
-        public Category Category { get; set; }
+        //public Category Category { get; set; }
         public int categoryId { get; set; }
     }
 }
