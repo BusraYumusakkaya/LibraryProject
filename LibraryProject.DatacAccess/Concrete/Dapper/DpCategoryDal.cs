@@ -3,6 +3,7 @@ using LibraryProject.DataAccess.Abstract;
 using LibraryProject.EntityLayer.Concrete.Library;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,13 +26,13 @@ namespace LibraryProject.DataAccess.Concrete.Dapper
 
         public List<Category> GetAll()
         {
-            var query = "SELECT * FROM Category;";
             using (var connection = repository.CreateConnection())
             {
-                var values = connection.Query<Category>(query).ToList();
-                return values;
+                var categories = connection.Query<Category>("sp_GetAllEntities", new { TableName = "Category" }, commandType: CommandType.StoredProcedure).ToList();
+                return categories;
             }
         }
+
 
         public Category GetById(int entityId)
         {

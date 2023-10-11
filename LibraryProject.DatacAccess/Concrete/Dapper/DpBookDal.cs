@@ -6,6 +6,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -32,11 +33,10 @@ namespace LibraryProject.DataAccess.Concrete.Dapper
 
         public List<Book> GetAll()
         {
-            var query = "SELECT * FROM Book;";
-            using (var connection= repository.CreateConnection())
+            using (var connection = repository.CreateConnection())
             {
-                var values=connection.Query<Book>(query).ToList();
-                return values;
+                var books = connection.Query<Book>("sp_GetAllEntities", new { TableName = "Book" }, commandType: CommandType.StoredProcedure).ToList();
+                return books;
             }
         }
 
